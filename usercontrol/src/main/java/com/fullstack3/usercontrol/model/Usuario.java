@@ -29,7 +29,10 @@ public class Usuario {
     @Column (name ="fecha_creacion", nullable = false)
     private LocalDateTime fecha_creacion;
 
-    public Usuario(Long id_usuario, String cod_usuario, String nombre_usuario, String correo_usuario, String password_usuario, Boolean flag_activo, LocalDateTime fecha_creacion) {
+    @Column (name ="fecha_modificacion", nullable = true)
+    private LocalDateTime fecha_modificacion;
+
+    public Usuario(Long id_usuario, String cod_usuario, String nombre_usuario, String correo_usuario, String password_usuario, Boolean flag_activo, LocalDateTime fecha_creacion, LocalDateTime fecha_modificacion) {
         this.id_usuario = id_usuario;
         this.cod_usuario = cod_usuario;
         this.nombre_usuario = nombre_usuario;
@@ -37,6 +40,7 @@ public class Usuario {
         this.password_usuario = password_usuario;
         this.flag_activo = flag_activo;
         this.fecha_creacion = fecha_creacion;
+        this.fecha_modificacion = fecha_modificacion;
     }
 
     public Usuario() {
@@ -96,6 +100,14 @@ public class Usuario {
 
     public void setFecha_creacion(LocalDateTime fecha_creacion) {
         this.fecha_creacion = fecha_creacion;
+    }
+
+    public LocalDateTime getFecha_modificacion() {
+        return fecha_modificacion;
+    }
+
+    public void setFecha_modificacion(LocalDateTime fecha_modificacion) {
+        this.fecha_modificacion = fecha_modificacion;
     }
 
 
