@@ -40,6 +40,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         if (existeCorreo) {
             throw new UsuarioAlreadyExistsException(usuario.getCorreo_usuario());
         }
+        usuario.setFlag_activo(true);
         return usuarioRepository.save(usuario);
     }
 
@@ -69,9 +70,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioBorrado.setNombre_usuario(usuario.getNombre_usuario());
         usuarioBorrado.setCorreo_usuario(usuario.getCorreo_usuario());
         usuarioBorrado.setPassword_usuario(usuario.getPassword_usuario());
-        usuarioBorrado.setFlag_activo(usuario.getFlag_activo());
+        usuarioBorrado.setFlag_activo(false); 
         usuarioBorrado.setFecha_borrado(LocalDateTime.now());
-        
         usuarioBorradoRepository.save(usuarioBorrado);
         usuarioRepository.delete(usuario);
     }

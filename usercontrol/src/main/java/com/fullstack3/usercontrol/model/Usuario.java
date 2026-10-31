@@ -4,14 +4,16 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity 
-@Table(name="usuarios_borrados")
+@Table(name="usuarios")
 public class Usuario {
 
     @Id 
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id_usuario;
 
-    @Column (name = "cod_usuario", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cod_usuario_seq")
+    @SequenceGenerator(name = "cod_usuario_seq", sequenceName = "seq_cod_usuario", allocationSize = 1)
+    @Column (name = "cod_usuario", nullable = false, unique = true)
     private Integer cod_usuario;
 
     @Column (name ="nombre_usuario", nullable = false, length = 100)
@@ -26,7 +28,7 @@ public class Usuario {
     @Column (name ="flag_activo", nullable = false)
     private Boolean flag_activo;
 
-    @Column (name ="fecha_creacion", nullable = false)
+    @Column(name = "fecha_creacion", nullable = false, insertable = false, updatable = false)
     private LocalDateTime fecha_creacion;
 
     @Column (name ="fecha_modificacion", nullable = true)
