@@ -11,5 +11,6 @@ public interface UsuarioService {
     Usuario createUsuario(Usuario usuario);
     Usuario updateUsuario(Long id, Usuario usuario);
     void deleteUsuario(Long id);
+    boolean authenticateUsuario(String correoUsuario, String password_usuario);
 
 }

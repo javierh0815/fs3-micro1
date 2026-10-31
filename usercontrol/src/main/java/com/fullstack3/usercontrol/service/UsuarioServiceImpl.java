@@ -74,4 +74,22 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioBorradoRepository.save(usuarioBorrado);
         usuarioRepository.delete(usuario);
     }
+
+    @Override
+    public boolean authenticateUsuario(String correoUsuario, String passwordUsuario) {
+
+        Usuario usuario = usuarioRepository.findByCorreoUsuario(correoUsuario).orElse(null);
+
+        if (usuario != null) {
+            boolean passwordMatch = usuario.getPassword_usuario().equals(passwordUsuario);
+            boolean isActive = Boolean.TRUE.equals(usuario.getFlag_activo());
+            
+            return passwordMatch && isActive;
+        }
+        
+        return false;
+    }
+
+
+
 }

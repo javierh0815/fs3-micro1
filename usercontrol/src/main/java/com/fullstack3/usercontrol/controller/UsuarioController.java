@@ -9,6 +9,7 @@ import java.util.List;
 import com.fullstack3.usercontrol.model.Usuario;
 import com.fullstack3.usercontrol.service.UsuarioService;
 
+
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -55,4 +56,17 @@ public class UsuarioController {
         usuarioService.deleteUsuario(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/login")
+    ResponseEntity<String> loginUsuario(@RequestBody Usuario credenciales) {
+        boolean isAuthenticated = usuarioService.authenticateUsuario(credenciales.getCorreoUsuario(), credenciales.getPassword_usuario());
+        if (isAuthenticated) {
+            return ResponseEntity.ok("Login exitoso");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
+        }
+    }
+    
+
+
 }
