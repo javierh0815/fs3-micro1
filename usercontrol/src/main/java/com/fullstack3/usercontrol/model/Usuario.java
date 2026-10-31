@@ -8,31 +8,43 @@ import java.time.LocalDateTime;
 public class Usuario {
 
     @Id 
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_usuario;
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cod_usuario_seq")
     @SequenceGenerator(name = "cod_usuario_seq", sequenceName = "seq_cod_usuario", allocationSize = 1)
-    @Column (name = "cod_usuario", nullable = false, unique = true)
+    @Column(name = "cod_usuario", nullable = false, unique = true)
     private Integer cod_usuario;
 
-    @Column (name ="nombre_usuario", nullable = false, length = 100)
+    @Column(name ="nombre_usuario", nullable = false, length = 100)
     private String nombre_usuario;
 
-    @Column (name ="correo_usuario", nullable = false, length = 100)
+    @Column(name ="correo_usuario", nullable = false, length = 100)
     private String correo_usuario;
 
-    @Column (name ="password_usuario", nullable = false, length = 100)
+    @Column(name ="password_usuario", nullable = false, length = 100)
     private String password_usuario;
 
-    @Column (name ="flag_activo", nullable = false)
+    @Column(name ="flag_activo", nullable = false)
     private Boolean flag_activo;
 
-    @Column(name = "fecha_creacion", nullable = false, insertable = false, updatable = false)
+    @Column(name = "fecha_creacion", nullable = false)
     private LocalDateTime fecha_creacion;
 
-    @Column (name ="fecha_modificacion", nullable = true)
+    @Column(name = "fecha_modificacion", nullable = true)
     private LocalDateTime fecha_modificacion;
+
+    @PrePersist
+    public void prePersist() {
+        LocalDateTime ahora = LocalDateTime.now();
+        this.fecha_creacion = ahora;
+        this.fecha_modificacion = ahora;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.fecha_modificacion = LocalDateTime.now();
+    }
 
     public Usuario(Long id_usuario, Integer cod_usuario, String nombre_usuario, String correo_usuario, String password_usuario, Boolean flag_activo, LocalDateTime fecha_creacion, LocalDateTime fecha_modificacion) {
         this.id_usuario = id_usuario;
@@ -111,10 +123,4 @@ public class Usuario {
     public void setFecha_modificacion(LocalDateTime fecha_modificacion) {
         this.fecha_modificacion = fecha_modificacion;
     }
-
-
-
-
-
-
 }
