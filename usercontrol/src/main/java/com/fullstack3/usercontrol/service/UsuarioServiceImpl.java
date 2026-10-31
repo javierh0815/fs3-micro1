@@ -6,7 +6,6 @@ import java.util.List;
 import com.fullstack3.usercontrol.exception.UsuarioAlreadyExistsException;
 import com.fullstack3.usercontrol.model.Usuario;
 import com.fullstack3.usercontrol.repository.UsuarioRepository;
-
 import com.fullstack3.usercontrol.repository.UsuarioBorradoRepository;
 import com.fullstack3.usercontrol.exception.UsuarioNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +35,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario createUsuario(Usuario usuario) {
-        boolean existeCorreo = usuarioRepository.existsByCorreoUsuario(usuario.getCorreo_usuario());
+        boolean existeCorreo = usuarioRepository.existsByCorreoUsuario(usuario.getCorreoUsuario());
         if (existeCorreo) {
             throw new UsuarioAlreadyExistsException(usuario.getCorreo_usuario());
         }
@@ -75,5 +74,4 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioBorradoRepository.save(usuarioBorrado);
         usuarioRepository.delete(usuario);
     }
-    
 }

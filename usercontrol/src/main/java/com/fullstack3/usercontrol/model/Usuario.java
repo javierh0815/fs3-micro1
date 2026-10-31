@@ -9,18 +9,17 @@ public class Usuario {
 
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_usuario;
+    @Column(name = "id_usuario")
+    private Long idUsuario;
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cod_usuario_seq")
-    @SequenceGenerator(name = "cod_usuario_seq", sequenceName = "seq_cod_usuario", allocationSize = 1)
-    @Column(name = "cod_usuario", nullable = false, unique = true)
+    @Column(name = "cod_usuario", nullable = false, unique = true, insertable = false, updatable = false)
     private Integer cod_usuario;
 
     @Column(name ="nombre_usuario", nullable = false, length = 100)
     private String nombre_usuario;
 
     @Column(name ="correo_usuario", nullable = false, length = 100)
-    private String correo_usuario;
+    private String correoUsuario;
 
     @Column(name ="password_usuario", nullable = false, length = 100)
     private String password_usuario;
@@ -46,11 +45,11 @@ public class Usuario {
         this.fecha_modificacion = LocalDateTime.now();
     }
 
-    public Usuario(Long id_usuario, Integer cod_usuario, String nombre_usuario, String correo_usuario, String password_usuario, Boolean flag_activo, LocalDateTime fecha_creacion, LocalDateTime fecha_modificacion) {
-        this.id_usuario = id_usuario;
+    public Usuario(Long idUsuario, Integer cod_usuario, String nombre_usuario, String correo_usuario, String password_usuario, Boolean flag_activo, LocalDateTime fecha_creacion, LocalDateTime fecha_modificacion) {
+        this.idUsuario = idUsuario;
         this.cod_usuario = cod_usuario;
         this.nombre_usuario = nombre_usuario;
-        this.correo_usuario = correo_usuario;
+        this.correoUsuario = correo_usuario;
         this.password_usuario = password_usuario;
         this.flag_activo = flag_activo;
         this.fecha_creacion = fecha_creacion;
@@ -60,12 +59,12 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Long getId_usuario() {
-        return id_usuario;
+    public Long getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setId_usuario(Long id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public Integer getCod_usuario() {
@@ -84,12 +83,21 @@ public class Usuario {
         this.nombre_usuario = nombre_usuario;
     }
 
+
     public String getCorreo_usuario() {
-        return correo_usuario;
+        return correoUsuario;
     }
 
     public void setCorreo_usuario(String correo_usuario) {
-        this.correo_usuario = correo_usuario;
+        this.correoUsuario = correo_usuario;
+    }
+
+    public String getCorreoUsuario() {
+        return correoUsuario;
+    }
+
+    public void setCorreoUsuario(String correoUsuario) {
+        this.correoUsuario = correoUsuario;
     }
 
     public String getPassword_usuario() {
