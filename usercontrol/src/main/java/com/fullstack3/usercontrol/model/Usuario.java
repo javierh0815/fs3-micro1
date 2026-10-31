@@ -11,8 +11,8 @@ public class Usuario {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id_usuario;
 
-    @Column (name = "cod_usuario", nullable = false, length = 10)
-    private String cod_usuario;
+    @Column (name = "cod_usuario", nullable = false)
+    private Integer cod_usuario;
 
     @Column (name ="nombre_usuario", nullable = false, length = 100)
     private String nombre_usuario;
@@ -32,7 +32,7 @@ public class Usuario {
     @Column (name ="fecha_modificacion", nullable = true)
     private LocalDateTime fecha_modificacion;
 
-    public Usuario(Long id_usuario, String cod_usuario, String nombre_usuario, String correo_usuario, String password_usuario, Boolean flag_activo, LocalDateTime fecha_creacion, LocalDateTime fecha_modificacion) {
+    public Usuario(Long id_usuario, Integer cod_usuario, String nombre_usuario, String correo_usuario, String password_usuario, Boolean flag_activo, LocalDateTime fecha_creacion, LocalDateTime fecha_modificacion) {
         this.id_usuario = id_usuario;
         this.cod_usuario = cod_usuario;
         this.nombre_usuario = nombre_usuario;
@@ -54,11 +54,11 @@ public class Usuario {
         this.id_usuario = id_usuario;
     }
 
-    public String getCod_usuario() {
+    public Integer getCod_usuario() {
         return cod_usuario;
     }
 
-    public void setCod_usuario(String cod_usuario) {
+    public void setCod_usuario(Integer cod_usuario) {
         this.cod_usuario = cod_usuario;
     }
 
