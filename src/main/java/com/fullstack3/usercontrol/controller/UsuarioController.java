@@ -65,4 +65,9 @@ public class UsuarioController {
             ));
         }
     }
+
+    @GetMapping("/codigo/{codUsuario}")
+    public ResponseEntity<UsuarioResponseDTO> getUsuarioByCodUsuario(@PathVariable Integer codUsuario) {
+        return ResponseEntity.ok(usuarioService.getUsuarioByCodUsuario(codUsuario));
+    }
 }

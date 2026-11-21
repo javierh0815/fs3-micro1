@@ -112,6 +112,13 @@ public class UsuarioServiceImpl implements UsuarioService {
         return null;
     }
 
+    @Override
+    public UsuarioResponseDTO getUsuarioByCodUsuario(Integer codUsuario) {
+        Usuario usuario = usuarioRepository.findByCodUsuario(codUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con código: " + codUsuario));
+        return mapToResponseDTO(usuario);
+    }
+    
     private UsuarioResponseDTO mapToResponseDTO(Usuario usuario) {
         return new UsuarioResponseDTO(
                 usuario.getIdUsuario(),
@@ -123,4 +130,6 @@ public class UsuarioServiceImpl implements UsuarioService {
                 usuario.getFecha_creacion()
         );
     }
+
+
 }

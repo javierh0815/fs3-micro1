@@ -13,5 +13,6 @@ public interface UsuarioService {
     UsuarioResponseDTO updateUsuario(Long id, UsuarioRequestDTO request);
     void deleteUsuario(Long id);
     UsuarioResponseDTO authenticateUsuario(LoginRequestDTO credenciales);
+    UsuarioResponseDTO getUsuarioByCodUsuario(Integer codUsuario);
 
 }
