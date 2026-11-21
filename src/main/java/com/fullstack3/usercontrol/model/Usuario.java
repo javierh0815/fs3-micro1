@@ -1,6 +1,8 @@
 package com.fullstack3.usercontrol.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Generated;
+import org.hibernate.generator.EventType;
 import java.time.LocalDateTime;
 
 @Entity 
@@ -12,13 +14,8 @@ public class Usuario {
     @Column(name = "id_usuario")
     private Long idUsuario;
 
-    @SequenceGenerator(
-        name = "cod_usuario_gen",
-        sequenceName = "seq_cod_usuario",
-        allocationSize = 1
-    )
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cod_usuario_gen")
-    @Column(name = "cod_usuario", nullable = false, unique = true)
+    @Generated(event = EventType.INSERT)
+    @Column(name = "cod_usuario", nullable = false, unique = true, insertable = false, updatable = false)
     private Integer cod_usuario;
 
     @Column(name = "nombre_usuario", nullable = false, length = 100)
