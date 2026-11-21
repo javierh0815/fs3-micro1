@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity 
-@Table(name="usuarios")
+@Table(name = "usuarios")
 public class Usuario {
 
     @Id 
@@ -15,16 +15,19 @@ public class Usuario {
     @Column(name = "cod_usuario", nullable = false, unique = true, insertable = false, updatable = false)
     private Integer cod_usuario;
 
-    @Column(name ="nombre_usuario", nullable = false, length = 100)
+    @Column(name = "nombre_usuario", nullable = false, length = 100)
     private String nombre_usuario;
 
-    @Column(name ="correo_usuario", nullable = false, length = 100)
+    @Column(name = "correo_usuario", nullable = false, length = 100)
     private String correoUsuario;
 
-    @Column(name ="password_usuario", nullable = false, length = 100)
+    @Column(name = "password_usuario", nullable = false, length = 100)
     private String password_usuario;
 
-    @Column(name ="flag_activo", nullable = false)
+    @Column(name = "rol_usuario", nullable = false, length = 100)
+    private String rol_usuario;
+
+    @Column(name = "flag_activo", nullable = false)
     private Boolean flag_activo;
 
     @Column(name = "fecha_creacion", nullable = false)
@@ -38,6 +41,12 @@ public class Usuario {
         LocalDateTime ahora = LocalDateTime.now();
         this.fecha_creacion = ahora;
         this.fecha_modificacion = ahora;
+        if (this.flag_activo == null) {
+            this.flag_activo = true;
+        }
+        if (this.rol_usuario == null || this.rol_usuario.isBlank()) {
+            this.rol_usuario = "USUARIO";
+        }
     }
 
     @PreUpdate
@@ -45,18 +54,21 @@ public class Usuario {
         this.fecha_modificacion = LocalDateTime.now();
     }
 
-    public Usuario(Long idUsuario, Integer cod_usuario, String nombre_usuario, String correo_usuario, String password_usuario, Boolean flag_activo, LocalDateTime fecha_creacion, LocalDateTime fecha_modificacion) {
+    public Usuario() {
+    }
+
+    public Usuario(Long idUsuario, Integer cod_usuario, String nombre_usuario, String correoUsuario,
+                   String password_usuario, String rol_usuario, Boolean flag_activo,
+                   LocalDateTime fecha_creacion, LocalDateTime fecha_modificacion) {
         this.idUsuario = idUsuario;
         this.cod_usuario = cod_usuario;
         this.nombre_usuario = nombre_usuario;
-        this.correoUsuario = correo_usuario;
+        this.correoUsuario = correoUsuario;
         this.password_usuario = password_usuario;
+        this.rol_usuario = rol_usuario;
         this.flag_activo = flag_activo;
         this.fecha_creacion = fecha_creacion;
         this.fecha_modificacion = fecha_modificacion;
-    }
-
-    public Usuario() {
     }
 
     public Long getIdUsuario() {
@@ -83,15 +95,6 @@ public class Usuario {
         this.nombre_usuario = nombre_usuario;
     }
 
-
-    public String getCorreo_usuario() {
-        return correoUsuario;
-    }
-
-    public void setCorreo_usuario(String correo_usuario) {
-        this.correoUsuario = correo_usuario;
-    }
-
     public String getCorreoUsuario() {
         return correoUsuario;
     }
@@ -106,6 +109,14 @@ public class Usuario {
 
     public void setPassword_usuario(String password_usuario) {
         this.password_usuario = password_usuario;
+    }
+
+    public String getRol_usuario() {
+        return rol_usuario;
+    }
+
+    public void setRol_usuario(String rol_usuario) {
+        this.rol_usuario = rol_usuario;
     }
 
     public Boolean getFlag_activo() {

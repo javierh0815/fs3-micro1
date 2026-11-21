@@ -23,18 +23,22 @@ public class UsuarioBorrado {
     @Column (name ="password_usuario", nullable = false, length = 100)
     private String password_usuario;
 
+    @Column (name ="rol_usuario", nullable = false, length = 100)
+    private String rol_usuario;
+
     @Column (name ="flag_activo", nullable = false)
     private Boolean flag_activo;
 
     @Column (name ="fecha_borrado", nullable = false)
     private LocalDateTime fecha_borrado;
 
-    public UsuarioBorrado(Long id_usuario, Integer cod_usuario, String nombre_usuario, String correo_usuario, String password_usuario, Boolean flag_activo, LocalDateTime fecha_borrado) {
+    public UsuarioBorrado(Long id_usuario, Integer cod_usuario, String nombre_usuario, String correo_usuario, String password_usuario, String rol_usuario, Boolean flag_activo, LocalDateTime fecha_borrado) {
         this.id_usuario = id_usuario;
         this.cod_usuario = cod_usuario;
         this.nombre_usuario = nombre_usuario;
         this.correo_usuario = correo_usuario;
         this.password_usuario = password_usuario;
+        this.rol_usuario = rol_usuario;
         this.flag_activo = flag_activo;
         this.fecha_borrado = fecha_borrado;
     }
@@ -98,7 +102,13 @@ public class UsuarioBorrado {
         this.fecha_borrado = fecha_borrado;
     }
 
-    
+    public String getRol_usuario() {
+        return rol_usuario;
+    }
+
+    public void setRol_usuario(String rol_usuario) {
+        this.rol_usuario = rol_usuario;
+    }
 
 
 
