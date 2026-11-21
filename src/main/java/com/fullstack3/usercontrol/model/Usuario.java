@@ -12,7 +12,13 @@ public class Usuario {
     @Column(name = "id_usuario")
     private Long idUsuario;
 
-    @Column(name = "cod_usuario", nullable = false, unique = true, insertable = false, updatable = false)
+    @SequenceGenerator(
+        name = "cod_usuario_gen",
+        sequenceName = "seq_cod_usuario",
+        allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cod_usuario_gen")
+    @Column(name = "cod_usuario", nullable = false, unique = true)
     private Integer cod_usuario;
 
     @Column(name = "nombre_usuario", nullable = false, length = 100)
