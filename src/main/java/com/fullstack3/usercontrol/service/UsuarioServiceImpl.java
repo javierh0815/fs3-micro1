@@ -86,7 +86,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         UsuarioBorrado usuarioBorrado = new UsuarioBorrado();
         usuarioBorrado.setCod_usuario(usuario.getCod_usuario());
         usuarioBorrado.setNombre_usuario(usuario.getNombre_usuario());
-        usuarioBorrado.setCorreoUsuario(usuario.getCorreoUsuario());
+        usuarioBorrado.setCorreo_usuario(usuario.getCorreoUsuario());
         usuarioBorrado.setPassword_usuario(usuario.getPassword_usuario());
         usuarioBorrado.setRol_usuario(usuario.getRol_usuario());
         usuarioBorrado.setFlag_activo(false);
