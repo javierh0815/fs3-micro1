@@ -1,0 +1,8 @@
+services:
+  usercontrol:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - /Wallet_ACT0MWAMO1BQMH0R:/Wallet_ACT0MWAMO1BQMH0R:ro
+    restart: always
